@@ -1,0 +1,73 @@
+package com.facebook.tests;
+
+import com.qaautoman.data.FacebookData;
+import com.qaautoman.pages.FacebookLoginPage;
+import com.qaautoman.pages.FacebookMainFeed;
+import com.qaautoman.pages.FacebookMainPage;
+import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
+public class Login_Test {
+	
+	public WebDriver driver;
+    FacebookMainPage fbMainPage;
+    FacebookLoginPage fbLoginPage;
+    FacebookMainFeed fbMainFeed;
+
+	@BeforeClass(alwaysRun = true)
+	public void setup(){
+		this.driver = new FirefoxDriver();
+        fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class );
+        fbLoginPage = PageFactory.initElements(driver, FacebookLoginPage.class );
+        fbMainFeed = PageFactory.initElements(driver, FacebookMainFeed.class );
+	}
+	
+	@AfterClass(alwaysRun = true)
+	public void teardown(){
+		this.driver.quit();
+	}
+
+	@Test(groups={"p1", "pageLoads"})
+	public void loadPage(){
+		driver.get(fbMainPage.PAGE_URL);
+		assertEquals(driver.getTitle(), fbMainPage.PAGE_TITLE);
+	}
+	
+	@Test(groups={"p2", "field"}, dependsOnMethods="loadPage")
+	public void filloutEmailFld(){
+        fbMainPage.setText_EmailLogin("anthony.vito11@hotmail.com");
+	}
+	
+	@Test(groups={"p2", "field"},dependsOnMethods="filloutEmailFld")
+	public void filloutPassFld(){
+        fbMainPage.setText_PasswordLogin("123456");
+	}
+
+    @Test(groups={"p1"}, dataProviderClass = FacebookData.class, dataProvider = "login")
+    public void testLoginMainPage(String email, String password, String errorType){
+        driver.manage().deleteAllCookies();
+
+        driver.get(fbMainPage.PAGE_URL);
+        assertEquals(driver.getTitle(), fbMainPage.PAGE_TITLE);
+        fbMainPage.setText_EmailLogin(email);
+        fbMainPage.setText_PasswordLogin(password);
+        fbMainPage.clickLoginMain();
+        // Verify what to test based on data passed in
+        if(!StringUtils.isBlank(errorType)){
+            boolean result = fbLoginPage.checkErrorHeader(errorType);
+            assertTrue(result, "Expected error: " + errorType);
+        }else {
+            assertTrue(!fbMainFeed.getUsernameText().isEmpty());
+        }
+    }
+
+}
