@@ -47,12 +47,6 @@ public class SignUp_Test {
         fbMainPage.selectBdayYear("1990");
         fbMainPage.click_MaleRadio();
         fbMainPage.click_SignUpButton();
-
-        try {
-            Thread.sleep(9000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
 }
