@@ -6,9 +6,13 @@ import com.qaautoman.pages.FacebookMainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 
@@ -18,11 +22,14 @@ import static org.testng.Assert.assertEquals;
 public class SignUp_Test {
 
     public WebDriver driver;
+    public WebDriverWait wait;
     FacebookMainPage fbMainPage;
 
     @BeforeClass(alwaysRun = true)
     public void setup(){
         this.driver = new FirefoxDriver();
+        wait = new WebDriverWait(driver, 5);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class);
     }
 

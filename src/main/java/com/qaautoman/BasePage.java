@@ -2,7 +2,9 @@ package com.qaautoman;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 /**
@@ -11,11 +13,14 @@ import org.testng.Assert;
 public class BasePage {
 
     public WebDriver driver;
+    public WebDriverWait wait;
+
     public String PAGE_URL;
     public String PAGE_TITLE;
 
     public BasePage(WebDriver driver){
         this.driver = driver;
+        wait = new WebDriverWait(driver, 5);
     }
 
     public void loadPage(){

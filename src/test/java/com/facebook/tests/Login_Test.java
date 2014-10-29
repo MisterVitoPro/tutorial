@@ -38,8 +38,7 @@ public class Login_Test {
 
 	@Test(groups={"p1", "pageLoads"})
 	public void loadPage(){
-		driver.get(fbMainPage.PAGE_URL);
-		assertEquals(driver.getTitle(), fbMainPage.PAGE_TITLE);
+        fbMainPage.loadPage();
 	}
 	
 	@Test(groups={"p2", "field"}, dependsOnMethods="loadPage")
@@ -56,11 +55,8 @@ public class Login_Test {
     public void testLoginMainPage(String email, String password, String errorType){
         driver.manage().deleteAllCookies();
 
-        driver.get(fbMainPage.PAGE_URL);
-        assertEquals(driver.getTitle(), fbMainPage.PAGE_TITLE);
-        fbMainPage.setText_EmailLogin(email);
-        fbMainPage.setText_PasswordLogin(password);
-        fbMainPage.clickLoginMain();
+        fbMainPage.loadPage();
+        fbMainPage.login(email, password);
         // Verify what to test based on data passed in
         if(!StringUtils.isBlank(errorType)){
             boolean result = fbLoginPage.checkErrorHeader(errorType);

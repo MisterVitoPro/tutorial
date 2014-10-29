@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
@@ -33,6 +34,13 @@ public class FacebookMainPage extends BasePage {
         super(driver);
         this.PAGE_TITLE = "Welcome to Facebook - Log In, Sign Up or Learn More";
         this.PAGE_URL = "http://www.facebook.com";
+    }
+
+    public void login(String email, String password){
+        wait.until(ExpectedConditions.elementToBeClickable(field_EmailLogin));
+        setText_EmailLogin(email);
+        setText_PasswordLogin(password);
+        clickLoginMain();
     }
 
     public void setText_EmailLogin(String text){
