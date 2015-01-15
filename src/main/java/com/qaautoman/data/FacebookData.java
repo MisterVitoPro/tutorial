@@ -20,8 +20,8 @@ public class FacebookData {
     @DataProvider(name = "login")
     public static Object[][] login() {
         return new Object[][] {
-                {"anthony.vito11@hotmail.com", "123456", null},
-                {"", "123456", "Incorrect Email"},
+                {"anthony.vito11@hotmail.com", "qaautoman", null},
+                {"", "qaautoman", "Incorrect Email"},
 
 
         };

@@ -37,8 +37,11 @@ public class Login_Test {
 	}
 
 	@Test(groups={"p1", "pageLoads"})
-	public void loadPage(){
+	public void loadPage()
+    {
+        System.out.println("loadpage");
         fbMainPage.loadPage();
+        System.out.println("loaded the page");
 	}
 	
 	@Test(groups={"p2", "field"}, dependsOnMethods="loadPage")
@@ -55,8 +58,10 @@ public class Login_Test {
     public void testLoginMainPage(String email, String password, String errorType){
         driver.manage().deleteAllCookies();
 
+        System.out.println("loadpage logineMain");
         fbMainPage.loadPage();
         fbMainPage.login(email, password);
+        System.out.println("loaded the page. LoginMain");
         // Verify what to test based on data passed in
         if(!StringUtils.isBlank(errorType)){
             boolean result = fbLoginPage.checkErrorHeader(errorType);

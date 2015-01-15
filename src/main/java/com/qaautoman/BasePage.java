@@ -1,5 +1,6 @@
 package com.qaautoman;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,12 +15,14 @@ public class BasePage {
 
     public WebDriver driver;
     public WebDriverWait wait;
+    protected JavascriptExecutor jsExecutor;
 
     public String PAGE_URL;
     public String PAGE_TITLE;
 
     public BasePage(WebDriver driver){
         this.driver = driver;
+        jsExecutor = ((JavascriptExecutor) driver);
         wait = new WebDriverWait(driver, 5);
     }
 
