@@ -39,9 +39,6 @@ public class Login_Test {
 		this.driver.quit();
 	}
 
-    @AfterMethod
-
-
     @Test(groups={"p1", "pageLoads"})
     public void testTryCatchFinally()  {
         try{
