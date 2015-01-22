@@ -8,6 +8,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.util.NoSuchElementException;
+
+import static org.testng.Assert.assertFalse;
+
 /**
  * Created by MisterVitoPro on 10/23/2014.
  */
@@ -29,6 +33,15 @@ public class BasePage {
     public void loadPage(){
         driver.get(getPageUrl());
         Assert.assertEquals(driver.getTitle(), getPageTitle());
+    }
+
+    public boolean verifyElementIsPresent(WebElement element){
+        try{
+            element.getTagName();
+            return true;
+        }catch(NoSuchElementException e){
+            return false;
+        }
     }
 
     public void clickElement(WebElement element){

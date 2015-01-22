@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.util.NoSuchElementException;
+
 /**
  * Created by MisterVitoPro on 9/28/2014.
  */
@@ -43,7 +45,7 @@ public class FacebookMainPage extends BasePage {
         clickLoginMain();
     }
 
-    public void setText_EmailLogin(String text){
+    public void setText_EmailLogin(String text) throws NoSuchElementException{
         setElementText(field_EmailLogin, text);
     }
 

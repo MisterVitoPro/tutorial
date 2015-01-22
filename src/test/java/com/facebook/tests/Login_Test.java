@@ -13,6 +13,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.IOError;
+import java.util.NoSuchElementException;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -36,26 +39,38 @@ public class Login_Test {
 		this.driver.quit();
 	}
 
+    @AfterMethod
+
+
+    @Test(groups={"p1", "pageLoads"})
+    public void testTryCatchFinally()  {
+        try{
+            assertTrue(false);
+            System.out.println("TRIED IT");
+        }catch(AssertionError e){
+            System.out.println("CAUGHT ME");
+        }finally{
+            driver.navigate().refresh();
+        }
+    }
+
 	@Test(groups={"p1", "pageLoads"})
-	public void loadPage()
-    {
-        System.out.println("loadpage");
+	public void loadPage()  {
         fbMainPage.loadPage();
-        System.out.println("loaded the page");
-	}
+    }
 	
 	@Test(groups={"p2", "field"}, dependsOnMethods="loadPage")
-	public void filloutEmailFld(){
+	public void filloutEmailFld() {
         fbMainPage.setText_EmailLogin("anthony.vito11@hotmail.com");
 	}
 	
 	@Test(groups={"p2", "field"},dependsOnMethods="filloutEmailFld")
-	public void filloutPassFld(){
+	public void filloutPassFld() {
         fbMainPage.setText_PasswordLogin("123456");
 	}
 
     @Test(groups={"p1"}, dataProviderClass = FacebookData.class, dataProvider = "login")
-    public void testLoginMainPage(String email, String password, String errorType){
+    public void testLoginMainPage(String email, String password, String errorType) {
         driver.manage().deleteAllCookies();
 
         System.out.println("loadpage logineMain");
