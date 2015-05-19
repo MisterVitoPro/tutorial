@@ -6,6 +6,7 @@ import com.qaautoman.pages.FacebookLoginPage;
 import com.qaautoman.pages.FacebookMainFeed;
 import com.qaautoman.pages.FacebookMainPage;
 import com.qaautoman.utilities.DriverFactory;
+import junitx.util.PropertyManager;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -19,6 +20,7 @@ import java.io.IOError;
 import java.sql.Driver;
 import java.util.NoSuchElementException;
 
+import static com.qaautoman.utilities.DriverFactory.*;
 import static com.qaautoman.utilities.DriverFactory.BrowserType.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -26,7 +28,6 @@ import static org.testng.Assert.assertTrue;
 public class Login_Test {
 	
 	public WebDriver driver;
-    DriverFactory.BrowserType type = CHROME;
     //FacebookMainPage fbMainPage;
     BasePage fbMainPage;
     FacebookLoginPage fbLoginPage;
@@ -34,7 +35,9 @@ public class Login_Test {
 
 	@BeforeClass(alwaysRun = true)
 	public void setup(){
-		this.driver = DriverFactory.getDriver(type);
+
+
+		this.driver = getDriver( DriverFactory.getBrowserTypeByProperty() );
 
         fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class );
         fbLoginPage = PageFactory.initElements(driver, FacebookLoginPage.class );
@@ -46,27 +49,13 @@ public class Login_Test {
 		this.driver.quit();
 	}
 
-    @Test(groups={"p1", "pageLoads"})
-    public void testTryCatchFinally()  {
-        try{
-            assertTrue(false);
-            System.out.println("TRIED IT");
-        }catch(AssertionError e){
-            System.out.println("CAUGHT ME");
-        }finally{
-            driver.navigate().refresh();
-        }
-    }
-
     @BeforeMethod
     public void beforeMethod(){
         System.out.println("BEFORE METHOD");
     }
 
-    @Parameters({"browserType"})
 	@Test(groups={"p1", "pageLoads"})
-	public void loadPage(@Optional("Firefox") String browserType) {
-        System.out.println("Browser: "+browserType);
+	public void loadPage() {
         fbMainPage.loadPage();
     }
 	
@@ -96,5 +85,4 @@ public class Login_Test {
             assertTrue(!fbMainFeed.getUsernameText().isEmpty());
         }
     }
-
 }

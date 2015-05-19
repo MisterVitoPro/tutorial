@@ -12,6 +12,11 @@
   		<groupId>org.testng</groupId>
   		<artifactId>testng</artifactId>
   	</dependency>
+    <dependency>
+      <groupId>junit-addons</groupId>
+      <artifactId>junit-addons</artifactId>
+      <version>1.4</version>
+    </dependency>
   </dependencies>
   <dependencyManagement>
   	<dependencies>

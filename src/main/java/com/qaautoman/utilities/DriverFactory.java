@@ -1,5 +1,6 @@
 package com.qaautoman.utilities;
 
+import junitx.util.PropertyManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -12,10 +13,20 @@ import static com.qaautoman.utilities.DriverFactory.BrowserType.*;
 public class DriverFactory {
 
     public enum BrowserType {
-        FIREFOX,
-        CHROME,
-        IE,
-        SAFARI
+        FIREFOX("firefox"),
+        CHROME("chrome"),
+        IE("internet_explorer"),
+        SAFARI("safari");
+
+        private String value;
+
+        BrowserType(String value){
+            this.value = value;
+        }
+
+        public String getBrowserName(){
+            return this.value;
+        }
     }
 
     public static WebDriver getDriver(BrowserType type){
@@ -33,6 +44,18 @@ public class DriverFactory {
                 break;
         }
         return driver;
+    }
+
+    public static BrowserType getBrowserTypeByProperty(){
+        BrowserType type = null;
+        String browsername = PropertyManager.getProperty("BROWSER");
+        for(BrowserType bType : BrowserType.values()){
+            if(bType.getBrowserName().equalsIgnoreCase(browsername)){
+                type = bType;
+                System.out.println("BROWSER = " + type.getBrowserName());
+            }
+        }
+        return type;
     }
 
 }
