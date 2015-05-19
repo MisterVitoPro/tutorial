@@ -19,6 +19,7 @@ public class FacebookData {
 
     @DataProvider(name = "login")
     public static Object[][] login() {
+        System.out.println("DATA PROVIDER");
         return new Object[][] {
                 {"anthony.vito11@hotmail.com", "qaautoman", null},
                 {"", "qaautoman", "Incorrect Email"},

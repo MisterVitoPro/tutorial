@@ -53,7 +53,7 @@ public class SignUp_Test {
         fbMainPage.selectBdayDay("20");
         fbMainPage.selectBdayYear("1990");
         fbMainPage.click_MaleRadio();
-        fbMainPage.click_SignUpButton();
+        //fbMainPage.click_SignUpButton(); // commented out to stop sign-up
     }
 
 }

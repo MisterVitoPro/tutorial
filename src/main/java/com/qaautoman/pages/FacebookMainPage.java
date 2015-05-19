@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
  */
 public class FacebookMainPage extends BasePage {
 
-    @FindBy(id = "email") WebElement field_EmailLogin;
+    @FindBy(id = "email") protected WebElement field_EmailLogin;
     @FindBy(id = "pass") WebElement field_PasswordLogin;
     @FindBy(css = "#loginbutton>input") WebElement button_Login;
     @FindBy(name = "firstname") WebElement field_FirstNameSignUp;
@@ -45,7 +45,9 @@ public class FacebookMainPage extends BasePage {
         clickLoginMain();
     }
 
+    @Override
     public void setText_EmailLogin(String text) throws NoSuchElementException{
+        System.out.println("FB MAIN");
         setElementText(field_EmailLogin, text);
     }
 

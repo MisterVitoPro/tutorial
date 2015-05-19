@@ -3,6 +3,7 @@ package com.qaautoman;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,6 +17,13 @@ import static org.testng.Assert.assertFalse;
  * Created by MisterVitoPro on 10/23/2014.
  */
 public class BasePage {
+
+    @FindBy(id = "SUPER > email") protected WebElement field_EmailLogin;
+
+    public void setText_EmailLogin(String text) throws NoSuchElementException{
+        System.out.println("SUPER CLASS");
+        setElementText(field_EmailLogin, text);
+    }
 
     public WebDriver driver;
     public WebDriverWait wait;

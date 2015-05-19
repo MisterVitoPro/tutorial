@@ -1,9 +1,11 @@
 package com.facebook.tests;
 
+import com.qaautoman.BasePage;
 import com.qaautoman.data.FacebookData;
 import com.qaautoman.pages.FacebookLoginPage;
 import com.qaautoman.pages.FacebookMainFeed;
 import com.qaautoman.pages.FacebookMainPage;
+import com.qaautoman.utilities.DriverFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,21 +16,26 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.io.IOError;
+import java.sql.Driver;
 import java.util.NoSuchElementException;
 
+import static com.qaautoman.utilities.DriverFactory.BrowserType.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class Login_Test {
 	
 	public WebDriver driver;
-    FacebookMainPage fbMainPage;
+    DriverFactory.BrowserType type = CHROME;
+    //FacebookMainPage fbMainPage;
+    BasePage fbMainPage;
     FacebookLoginPage fbLoginPage;
     FacebookMainFeed fbMainFeed;
 
 	@BeforeClass(alwaysRun = true)
 	public void setup(){
-		this.driver = new FirefoxDriver();
+		this.driver = DriverFactory.getDriver(type);
+
         fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class );
         fbLoginPage = PageFactory.initElements(driver, FacebookLoginPage.class );
         fbMainFeed = PageFactory.initElements(driver, FacebookMainFeed.class );
@@ -51,8 +58,15 @@ public class Login_Test {
         }
     }
 
+    @BeforeMethod
+    public void beforeMethod(){
+        System.out.println("BEFORE METHOD");
+    }
+
+    @Parameters({"browserType"})
 	@Test(groups={"p1", "pageLoads"})
-	public void loadPage()  {
+	public void loadPage(@Optional("Firefox") String browserType) {
+        System.out.println("Browser: "+browserType);
         fbMainPage.loadPage();
     }
 	
@@ -63,7 +77,7 @@ public class Login_Test {
 	
 	@Test(groups={"p2", "field"},dependsOnMethods="filloutEmailFld")
 	public void filloutPassFld() {
-        fbMainPage.setText_PasswordLogin("123456");
+       // fbMainPage.setText_PasswordLogin("123456");
 	}
 
     @Test(groups={"p1"}, dataProviderClass = FacebookData.class, dataProvider = "login")
@@ -72,7 +86,7 @@ public class Login_Test {
 
         System.out.println("loadpage logineMain");
         fbMainPage.loadPage();
-        fbMainPage.login(email, password);
+       // fbMainPage.login(email, password);
         System.out.println("loaded the page. LoginMain");
         // Verify what to test based on data passed in
         if(!StringUtils.isBlank(errorType)){
