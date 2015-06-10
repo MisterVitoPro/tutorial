@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Sign Up Tests">
+    <test name="Test 1" group-by-instances="true" preserve-order="true">
+        <classes>
+            <class name="com.facebook.tests.SignUp_Flow_Test"/>
+        </classes>
+    </test>
+</suite>

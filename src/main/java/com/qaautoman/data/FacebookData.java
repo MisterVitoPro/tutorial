@@ -27,4 +27,13 @@ public class FacebookData {
 
         };
     }
+
+    @DataProvider(name="signup")
+    public static Object[][] signup(){
+        return new Object[][] {
+                {"QA", "Automan", "validEmail@qaautoman.com"},
+                {"@#$%@#", "@#!#@$T%%%", "validEmail@qaautoman.com"},
+                {"12341", "5234523", "validEmail@qaautoman.com"},
+        };
+    }
 }

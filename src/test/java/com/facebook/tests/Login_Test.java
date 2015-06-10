@@ -35,10 +35,7 @@ public class Login_Test {
 
 	@BeforeClass(alwaysRun = true)
 	public void setup(){
-
-
 		this.driver = getDriver( DriverFactory.getBrowserTypeByProperty() );
-
         fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class );
         fbLoginPage = PageFactory.initElements(driver, FacebookLoginPage.class );
         fbMainFeed = PageFactory.initElements(driver, FacebookMainFeed.class );

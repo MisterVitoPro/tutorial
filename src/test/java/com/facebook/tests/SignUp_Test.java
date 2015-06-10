@@ -3,17 +3,17 @@ package com.facebook.tests;
 import com.qaautoman.pages.FacebookLoginPage;
 import com.qaautoman.pages.FacebookMainFeed;
 import com.qaautoman.pages.FacebookMainPage;
+import com.qaautoman.utilities.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.qaautoman.utilities.DriverFactory.getDriver;
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -27,7 +27,7 @@ public class SignUp_Test {
 
     @BeforeClass(alwaysRun = true)
     public void setup(){
-        this.driver = new FirefoxDriver();
+        this.driver = getDriver( DriverFactory.getBrowserTypeByProperty() );
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class);
@@ -38,7 +38,7 @@ public class SignUp_Test {
         this.driver.quit();
     }
 
-    @Test(groups={"p1"})
+    @Test(groups={"p1"}, enabled = false)
     public void testSignUpMainPage(){
         driver.manage().deleteAllCookies();
 
