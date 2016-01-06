@@ -1,8 +1,6 @@
 package com.facebook.tests;
 
-import com.qaautoman.utilities.MyTestListener;
-import org.testng.Assert;
-import org.testng.SkipException;
+import com.utilities.MyTestListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 

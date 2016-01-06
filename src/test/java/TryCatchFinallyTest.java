@@ -1,14 +1,10 @@
-import com.qaautoman.pages.FacebookLoginPage;
-import com.qaautoman.pages.FacebookMainFeed;
-import com.qaautoman.pages.FacebookMainPage;
-import com.qaautoman.utilities.DriverFactory;
+import com.utilities.DriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static com.qaautoman.utilities.DriverFactory.BrowserType.CHROME;
+import static com.utilities.DriverFactory.BrowserType.CHROME;
 import static org.testng.Assert.assertTrue;
 
 /**

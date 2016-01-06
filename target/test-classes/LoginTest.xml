@@ -4,7 +4,7 @@
 <suite name="Login Tests" parallel="classes" thread-count="5">
     <test name="Test 1">
         <parameter name="language" value="en"/>
-        <parameter name="browserType" value="chrome"/>
+        <parameter name="browserType" value="firefox"/>
         <classes>
             <class name="com.facebook.tests.Login_Test"/>
         </classes>
