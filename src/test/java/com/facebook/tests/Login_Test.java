@@ -5,6 +5,7 @@ import com.facebook.pages.FacebookLoginPage;
 import com.facebook.pages.FacebookMainFeed;
 import com.facebook.pages.FacebookMainPage;
 import com.utilities.DriverFactory;
+import com.utilities.MyTestListener;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -14,6 +15,7 @@ import static com.utilities.DriverFactory.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+@Listeners(MyTestListener.class)
 public class Login_Test {
 	
 	public WebDriver driver;
@@ -59,11 +61,9 @@ public class Login_Test {
     public void testLoginMainPage(String email, String password, String errorType) {
         driver.manage().deleteAllCookies();
 
-        System.out.println("loadpage logineMain");
         fbMainPage.loadPage();
-        driver.get("http://www.google.com");
         fbMainPage.login(email, password);
-        System.out.println("loaded the page. LoginMain");
+        System.out.println("Loaded the page, LoginMain");
         // Verify what to test based on data passed in
         if(!StringUtils.isBlank(errorType)){
             boolean result = fbLoginPage.checkErrorHeader(errorType);

@@ -2,9 +2,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Login Tests" parallel="classes" thread-count="5">
+    <parameter name="language" value="en"/>
     <test name="Test 1">
-        <parameter name="language" value="en"/>
         <parameter name="browserType" value="firefox"/>
+        <classes>
+            <class name="com.facebook.tests.Login_Test"/>
+        </classes>
+    </test>
+    <test name="Test 2">
+        <parameter name="browserType" value="chrome"/>
         <classes>
             <class name="com.facebook.tests.Login_Test"/>
         </classes>
