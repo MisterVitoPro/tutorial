@@ -25,7 +25,7 @@ public class Login_Test {
     FacebookMainFeed fbMainFeed;
 
 	@BeforeClass(alwaysRun = true)
-	public void setup(){
+	public void setup() throws Exception {
 		this.driver = getDriver( DriverFactory.getBrowserTypeByProperty() );
         fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class );
         fbLoginPage = PageFactory.initElements(driver, FacebookLoginPage.class );

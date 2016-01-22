@@ -1,9 +1,15 @@
 package com.utilities;
 
 import junitx.util.PropertyManager;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by MisterVitoPro on 5/12/2015.
@@ -27,21 +33,24 @@ public class DriverFactory {
         }
     }
 
-    public static WebDriver getDriver(BrowserType type){
-        WebDriver driver = null;
+    public static WebDriver getDriver(BrowserType type) throws Exception {
+
+        if(PropertyManager.getProperty("USE_GRID").equalsIgnoreCase("true")){
+            DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+            desiredCapabilities.setBrowserName(type.getBrowserName());
+            desiredCapabilities.setPlatform(Platform.WINDOWS);
+            return new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), desiredCapabilities);
+        }
+
         switch(type){
             case FIREFOX:
-                driver = new FirefoxDriver();
-                break;
+                return new FirefoxDriver();
             case CHROME:
                 System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
-                driver = new ChromeDriver();
-                break;
+                return new ChromeDriver();
             default:
-                driver = new FirefoxDriver();
-                break;
+                return new FirefoxDriver();
         }
-        return driver;
     }
 
     public static BrowserType getBrowserTypeByProperty(){

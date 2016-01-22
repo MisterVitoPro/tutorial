@@ -36,7 +36,7 @@ public class SignUp_Flow_Test {
     }
 
     @BeforeClass(alwaysRun = true)
-    public void setup(){
+    public void setup() throws Exception {
         this.driver = getDriver( DriverFactory.getBrowserTypeByProperty() );
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

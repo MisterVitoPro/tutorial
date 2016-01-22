@@ -4,6 +4,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.net.MalformedURLException;
+
 import static com.utilities.DriverFactory.BrowserType.CHROME;
 import static org.testng.Assert.assertTrue;
 
@@ -16,7 +18,7 @@ public class TryCatchFinallyTest {
     DriverFactory.BrowserType type = CHROME;
 
     @BeforeClass(alwaysRun = true)
-    public void setup(){
+    public void setup() throws Exception {
         this.driver = DriverFactory.getDriver(type);
     }
 
