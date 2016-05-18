@@ -1,5 +1,6 @@
 package com.facebook.tests;
 
+import com.WebBaseTest;
 import com.facebook.data.FacebookData;
 import com.facebook.pages.FacebookMainPage;
 import com.utilities.DriverFactory;
@@ -19,17 +20,14 @@ import static com.utilities.DriverFactory.getDriver;
 /**
  * Created by MisterVitoPro on 10/21/2014.
  */
-public class SignUp_Flow_Test {
+public class SignUp_Flow_Test extends WebBaseTest {
 
-    public WebDriver driver;
-    public WebDriverWait wait;
     FacebookMainPage fbMainPage;
-
     HashMap<String, String> signUpMap;
 
     @Factory(dataProvider = "signup", dataProviderClass = FacebookData.class)
     public SignUp_Flow_Test(String first, String last, String email){
-        signUpMap = new HashMap<String, String>();
+        signUpMap = new HashMap<>();
         signUpMap.put("firstname", first);
         signUpMap.put("lastname", last);
         signUpMap.put("email", email);
@@ -37,15 +35,7 @@ public class SignUp_Flow_Test {
 
     @BeforeClass(alwaysRun = true)
     public void setup() throws Exception {
-        this.driver = getDriver( DriverFactory.getBrowserTypeByProperty() );
-        wait = new WebDriverWait(driver, 5);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class);
-    }
-
-    @AfterClass(alwaysRun = true)
-    public void teardown(){
-        this.driver.quit();
     }
 
     @Test

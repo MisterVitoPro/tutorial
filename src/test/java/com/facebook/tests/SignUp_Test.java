@@ -1,5 +1,6 @@
 package com.facebook.tests;
 
+import com.WebBaseTest;
 import com.facebook.pages.FacebookMainPage;
 import com.utilities.DriverFactory;
 import org.openqa.selenium.WebDriver;
@@ -15,23 +16,13 @@ import static org.testng.Assert.assertEquals;
 /**
  * Created by MisterVitoPro on 10/21/2014.
  */
-public class SignUp_Test {
+public class SignUp_Test extends WebBaseTest {
 
-    public WebDriver driver;
-    public WebDriverWait wait;
     FacebookMainPage fbMainPage;
 
     @BeforeClass(alwaysRun = true)
     public void setup() throws Exception {
-        this.driver = getDriver( DriverFactory.getBrowserTypeByProperty() );
-        wait = new WebDriverWait(driver, 5);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class);
-    }
-
-    @AfterClass(alwaysRun = true)
-    public void teardown(){
-        this.driver.quit();
     }
 
     @Test(groups={"p1"}, enabled = false)

@@ -1,4 +1,4 @@
-package com.facebook.tests;
+package ExampleTests;
 
 import com.utilities.MyTestListener;
 import org.testng.annotations.Listeners;

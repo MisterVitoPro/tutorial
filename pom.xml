@@ -3,45 +3,38 @@
   <groupId>com.vito.tutorials</groupId>
   <artifactId>WebDriverTests</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+	<dependencies>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+            <version>2.53.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+            <version>6.9.4</version>
+		</dependency>
+		<dependency>
+		  <groupId>junit-addons</groupId>
+		  <artifactId>junit-addons</artifactId>
+		  <version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.0</version>
+		</dependency>
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	<dependencies>
-  	<dependency>
-  		<groupId>org.seleniumhq.selenium</groupId>
-  		<artifactId>selenium-java</artifactId>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.testng</groupId>
-  		<artifactId>testng</artifactId>
-  	</dependency>
-    <dependency>
-      <groupId>junit-addons</groupId>
-      <artifactId>junit-addons</artifactId>
-      <version>1.4</version>
-    </dependency>
-  </dependencies>
-  <dependencyManagement>
-  	<dependencies>
-  		<dependency>
-  			<groupId>org.seleniumhq.selenium</groupId>
-  			<artifactId>selenium-java</artifactId>
-  			<version>2.48.2</version>
-  		</dependency>
-  		<dependency>
-  			<groupId>org.testng</groupId>
-  			<artifactId>testng</artifactId>
-  			<version>6.9.4</version>
-  		</dependency>
-  	</dependencies>
-  </dependencyManagement>
 </project>

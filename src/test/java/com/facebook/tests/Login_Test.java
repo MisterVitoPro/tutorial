@@ -1,5 +1,6 @@
 package com.facebook.tests;
 
+import com.WebBaseTest;
 import com.facebook.data.FacebookData;
 import com.facebook.pages.FacebookLoginPage;
 import com.facebook.pages.FacebookMainFeed;
@@ -16,28 +17,21 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 @Listeners(MyTestListener.class)
-public class Login_Test {
+public class Login_Test extends WebBaseTest {
 	
-	public WebDriver driver;
     //FacebookMainPage fbMainPage;
     FacebookMainPage fbMainPage;
     FacebookLoginPage fbLoginPage;
     FacebookMainFeed fbMainFeed;
 
-	@BeforeClass(alwaysRun = true)
+	@BeforeClass(groups="pageLoads")
 	public void setup() throws Exception {
-		this.driver = getDriver( DriverFactory.getBrowserTypeByProperty() );
         fbMainPage = PageFactory.initElements(driver, FacebookMainPage.class );
         fbLoginPage = PageFactory.initElements(driver, FacebookLoginPage.class );
         fbMainFeed = PageFactory.initElements(driver, FacebookMainFeed.class );
 	}
-	
-	@AfterClass(alwaysRun = true)
-	public void teardown(){
-		this.driver.quit();
-	}
 
-    @BeforeMethod
+    @BeforeMethod(groups="pageLoads")
     public void beforeMethod(){
         System.out.println("BEFORE METHOD");
     }
