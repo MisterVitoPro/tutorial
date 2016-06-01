@@ -18,6 +18,8 @@ import static org.testng.Assert.assertFalse;
  */
 public class BasePage {
 
+    public String propertiesPath;
+    private String absolutePath = "F:\\Tutorials_QA_Automan\\workspace\\tutorial\\src\\test\\resources\\";
     public WebDriver driver;
     public WebDriverWait wait;
     protected JavascriptExecutor jsExecutor;
@@ -29,6 +31,12 @@ public class BasePage {
         this.driver = driver;
         jsExecutor = ((JavascriptExecutor) driver);
         wait = new WebDriverWait(driver, 5);
+
+    }
+
+    public void initElementsByProperties(){
+        String fullPath = absolutePath + propertiesPath;
+
     }
 
     public void loadPage(){

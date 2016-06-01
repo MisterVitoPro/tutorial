@@ -1,6 +1,7 @@
 package com.utilities;
 
 import junitx.util.PropertyManager;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -55,7 +56,7 @@ public class DriverFactory {
 
     public static BrowserType getBrowserTypeByProperty(){
         BrowserType type = null;
-        String browsername = PropertyManager.getProperty("BROWSER");
+        String browsername = (StringUtils.isNotEmpty(System.getenv("BROWSER"))) ? System.getenv("BROWSER") : PropertyManager.getProperty("BROWSER");
         for(BrowserType bType : BrowserType.values()){
             if(bType.getBrowserName().equalsIgnoreCase(browsername)){
                 type = bType;

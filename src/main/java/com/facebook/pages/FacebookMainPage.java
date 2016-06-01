@@ -15,19 +15,23 @@ import org.testng.Assert;
  */
 public class FacebookMainPage extends BasePage {
 
-    @FindBy(id = "email") protected WebElement field_EmailLogin;
-    @FindBy(id = "pass") WebElement field_PasswordLogin;
-    @FindBy(css = "#loginbutton>input") WebElement button_Login;
+    String propertiesPath = "facebookMainPageLocators.properties";
+
+    final String EMAIL_LOGIN = "#email";
+    final String EMAIL_PASSWORD = "#pass";
+    final String EMAIL_FIRSTNAME = "#loginbutton>input";
+
+    @FindBy(css = EMAIL_LOGIN) protected WebElement field_EmailLogin;
+    @FindBy(css = EMAIL_PASSWORD) WebElement field_PasswordLogin;
+    @FindBy(css = EMAIL_FIRSTNAME) WebElement button_Login;
     @FindBy(name = "firstname") WebElement field_FirstNameSignUp;
     @FindBy(name = "lastname") WebElement field_LastNameSignUp;
     @FindBy(name = "reg_email__") WebElement field_EmailMobileSignUp;
     @FindBy(name = "reg_email_confirmation__") WebElement field_ReenterEmailMobileSignUp;
     @FindBy(name = "reg_passwd__") WebElement field_PasswordSignUp;
-
     @FindBy(id = "month") WebElement dropdown_Month;
     @FindBy(id = "day") WebElement dropdown_Day;
     @FindBy(id = "year") WebElement dropdown_Year;
-
     @FindBy(css = "span+span input[name='sex']") WebElement radio_Male;
     @FindBy(css = "button[name='websubmit']") WebElement button_SignUp;
 
